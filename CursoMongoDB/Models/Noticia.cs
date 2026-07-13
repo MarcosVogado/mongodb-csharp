@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+namespace CursoMongoDB;
 public class NoticiaClass
 {
     public string Titulo { get; set; }
