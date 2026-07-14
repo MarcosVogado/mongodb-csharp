@@ -1,0 +1,15 @@
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.AssemblyInfoInputs.cache
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.AssemblyInfo.cs
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.csproj.CoreCompileInputs.cache
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.sourcelink.json
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\bin\Debug\net9.0\CursoMongoDB.exe
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\bin\Debug\net9.0\CursoMongoDB.deps.json
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\bin\Debug\net9.0\CursoMongoDB.runtimeconfig.json
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\bin\Debug\net9.0\CursoMongoDB.dll
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\bin\Debug\net9.0\CursoMongoDB.pdb
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.dll
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\refint\CursoMongoDB.dll
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.pdb
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\CursoMongoDB.genruntimeconfig.cache
+C:\Users\marco\OneDrive\Documents\estudos\mongodb-csharp\CursoMongoDB\obj\Debug\net9.0\ref\CursoMongoDB.dll
