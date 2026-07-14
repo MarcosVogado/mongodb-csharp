@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace CursoMongoDB;
 public class NoticiaClass
@@ -16,6 +17,11 @@ public class NoticiaClass
     public int Gostei { get; set; }
     public int NaoGostei { get; set; }
     public double TempoMedioLeitura { get; set; }
+
+    public string ToJson()
+    {
+        return JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
 }
 
 public class JornalistaClass
