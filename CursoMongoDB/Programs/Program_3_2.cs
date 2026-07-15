@@ -1,8 +1,28 @@
-﻿namespace CursoMongoDB.Programs;
+﻿using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
+
+namespace CursoMongoDB.Programs;
+
 public static class Program_3_2
 {
     public static void Executar()
     {
+        var configuration = new ConfigurationBuilder()
+            .AddUserSecrets<SecretsAnchor>()
+            .Build();
+
+        var connectionString = configuration["MongoDb:ConnectionString"];
+
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new InvalidOperationException(
+                "Connection string não configurada. Rode: " +
+                "dotnet user-secrets set \"MongoDb:ConnectionString\" \"<sua-string>\"");
+        }
+
+        var client = new MongoClient(connectionString);
+        var database = client.GetDatabase("NoticiasDB");
+
         var Noticia = new NoticiaClass
         {
             Titulo = "Brasil bate Equador",
@@ -41,9 +61,21 @@ public static class Program_3_2
             TempoMedioLeitura = 0.0
         };
 
+        var noticiaJson = Noticia.ToJson();
+
+        try
+        {
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Ocorreu um erro ao tentar inserir o JSON como string:");
+            Console.WriteLine(ex.Message);
+        }
+
         Console.WriteLine("Notícia no formato JSON:\n");
         Console.WriteLine(Noticia.ToJson());
     }
 
-    
+
 }
