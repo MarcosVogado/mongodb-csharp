@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 namespace CursoMongoDB.Programs;
 
-public static class Program_3_1a
+public static class Program_3_1b
 {
     public static void Executar()
     {
@@ -25,13 +25,9 @@ public static class Program_3_1a
 
         var client = new MongoClient(connectionString);
         var database = client.GetDatabase("NoticiasDB");
-        var collection = database.GetCollection<dynamic>("noticias");
-        
-        database.CreateCollection("noticias");
+        client.DropDatabase("NoticiasDB");
 
-        Console.WriteLine("Banco de dados 'NoticiasDB' e coleção 'noticias' criados com sucesso!");
+        Console.WriteLine("Banco de dados 'NoticiasDB' removido com sucesso!");
     }
 }
 
-// Tipo apenas para ancorar o assembly dos User Secrets.
-internal sealed class SecretsAnchor { }
