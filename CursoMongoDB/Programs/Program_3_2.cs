@@ -22,6 +22,7 @@ public static class Program_3_2
 
         var client = new MongoClient(connectionString);
         var database = client.GetDatabase("NoticiasDB");
+        var collection = database.GetCollection<dynamic>("noticias");
 
         var Noticia = new NoticiaClass
         {
@@ -65,16 +66,14 @@ public static class Program_3_2
 
         try
         {
-
+            collection.InsertOne(noticiaJson);
+            Console.WriteLine("Notícia incluída com sucesso!");
         }
         catch (Exception ex)
         {
             Console.WriteLine("Ocorreu um erro ao tentar inserir o JSON como string:");
             Console.WriteLine(ex.Message);
         }
-
-        Console.WriteLine("Notícia no formato JSON:\n");
-        Console.WriteLine(Noticia.ToJson());
     }
 
 
