@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using MongoDB.Bson;
 
 namespace CursoMongoDB;
 public class NoticiaClass
@@ -21,6 +22,11 @@ public class NoticiaClass
     public string ToJson()
     {
         return JsonConvert.SerializeObject(this, Formatting.Indented);
+    }
+
+    public BsonDocument ToBson()
+    {
+        return this.ToBsonDocument();
     }
 }
 
