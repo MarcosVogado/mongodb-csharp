@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using MongoDB.Bson;
-using MongoDB.Json;
+using Newtonsoft.Json;
 
 namespace CursoMongoDB.Programs;
 
@@ -51,6 +51,8 @@ public static class Program_4_1
             ""NaoGostei"": 0,
             ""TempoMedioLeitura"": 0.0
         }";
+
+        var Noticia = JsonConvert.DeserializeObject<NoticiaClass>(jsonRecebido);
 
         var noticiaBson = Noticia.ToBson();
 
