@@ -2,20 +2,27 @@ using CursoMongoDB.Programs;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         // Chame apenas o programa do vídeo desejado
-        //Program_2_4.Executar();
-        //Program_2_5.Executar();
-        //Program_3_1a.Executar();
-        //Program_3_1b.Executar();
-        //Program_3_2.Executar();
-        //Program_3_3.Executar();
-        //Program_3_5.Executar();
+        // Program_2_4.Executar();
+        // Program_2_5.Executar();
+        // Program_3_1a.Executar();
+        // Program_3_1b.Executar();
+        // Program_3_2.Executar();
+        // Program_3_3.Executar();
+        // Program_3_5.Executar();
         // Program_4_1.Executar();
-        //Program_4_2.Executar();
-        Program_4_3.Executar();
-
+        // Program_4_2.Executar();
+        // Program_4_3.Executar();
+        // Program_4_4a.Executar();
+        var tarefa = Program_4_4b.ExecutarAsync();
+        for (int i = 1; i <= 20; i++)
+        {
+            Console.WriteLine($"Contador: {i}");
+            System.Threading.Thread.Sleep(1000);
+        }
+        Console.WriteLine("Fim do processo");
 
     }
 }
