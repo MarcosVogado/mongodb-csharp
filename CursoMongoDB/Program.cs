@@ -16,13 +16,16 @@ class Program
         // Program_4_2.Executar();
         // Program_4_3.Executar();
         // Program_4_4a.Executar();
-        var tarefa = Program_4_4b.ExecutarAsync();
-        for (int i = 1; i <= 20; i++)
-        {
-            Console.WriteLine($"Contador: {i}");
-            System.Threading.Thread.Sleep(1000);
-        }
-        Console.WriteLine("Fim do processo");
+        // var tarefa = Program_4_4b.ExecutarAsync();
+        // for (int i = 1; i <= 20; i++)
+        // {
+        //     Console.WriteLine($"Contador: {i}");
+        //     System.Threading.Thread.Sleep(1000);
+        // }
+        // Console.WriteLine("Fim do processo");
+
+        //await Program_4_5a.ExecutarAsync();
+        await Program_4_5b.ExecutarAsync();
 
     }
 }
