@@ -24,8 +24,10 @@ class Program
         // }
         // Console.WriteLine("Fim do processo");
 
-        //await Program_4_5a.ExecutarAsync();
-        await Program_4_5b.ExecutarAsync();
+        // await Program_4_5a.ExecutarAsync();
+        // await Program_4_5b.ExecutarAsync();
+        await Program_5_2a.ExecutarAsync();
+
 
     }
 }
