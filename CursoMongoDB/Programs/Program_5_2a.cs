@@ -17,7 +17,6 @@ public static class Program_5_2a
 
         var connectionString = configuration["MongoDb:ConnectionString"];
 
-
         if (string.IsNullOrWhiteSpace(connectionString))
         {
             throw new InvalidOperationException(
