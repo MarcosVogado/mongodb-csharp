@@ -109,7 +109,7 @@ namespace CursoMongoDB.Services
                                 Comentario: { bsonType: 'string' },
                                 Curtidas: { bsonType: 'int' },
                                 Usuario: { bsonType: 'string' },
-                                Data: { bsonType: 'date' }
+                                Data: { bsonType: 'date' },
                             }
                         }
                     },
@@ -136,6 +136,35 @@ namespace CursoMongoDB.Services
             }";
 
             return BsonDocument.Parse(@"{ ""$jsonSchema"": " + schemaJson + "}");
+        }
+
+        public static void TratarErroValidacaoMongo(MongoWriteException mwx)
+        {
+            Console.WriteLine("Ocorreu um erro de validação ao tentar inserir a notícia.");
+            try
+            {
+                var detalhes = mwx.WriteError?.Details?.AsBsonDocument;
+
+                if (detalhes != null)
+                {
+                    Console.WriteLine("Detalhes da violação de schema:");
+                    Console.WriteLine(detalhes.ToJson(new MongoDB.Bson.IO.JsonWriterSettings
+                    {
+                        Indent = true,
+                        OutputMode = MongoDB.Bson.IO.JsonOutputMode.RelaxedExtendedJson
+                    }));
+                }
+                else
+                {
+                    Console.WriteLine("Não foi possível acessar os detalhes da falha de validação.");
+                }
+            }
+            catch (Exception e2)
+            {
+                Console.WriteLine("Erro ao tentar extrair informações do erro de validação:");
+                Console.WriteLine(e2.Message);
+            }
+            Console.WriteLine("Dica: Verifique os tipos e campos exigidos pelo schema JSON definido no MongoDB.");
         }
     }
 }
