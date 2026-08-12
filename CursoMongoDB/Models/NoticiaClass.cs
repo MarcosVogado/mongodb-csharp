@@ -5,11 +5,16 @@ using MongoDB.Bson;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace CursoMongoDB;
 public class NoticiaClass
 {
     // public string Titulo { get; set; }
+
+    [BsonId]
+    [JsonIgnore]
+    public Object Id { get; set; }
     private string _titulo;
     public string Titulo
     {
