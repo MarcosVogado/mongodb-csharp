@@ -19,6 +19,7 @@ namespace CursoMongoDB.Services
             _colecao = contexto.Noticias;
             _contexto = contexto;
             CriarOuAtualizarSchemaDaColecao();
+            CriarIndiceUnicoParaUrl();
         }
 
         private void CriarOuAtualizarSchemaDaColecao()
@@ -213,6 +214,14 @@ namespace CursoMongoDB.Services
                     urlsVistas.Add(url);
                 }
             }
+        }
+
+        private void CriarIndiceUnicoParaUrl()
+        {
+            var indexKeys = Builders<BsonDocument>.IndexKeys.Ascending("Url");
+            var indexOptions = new CreateIndexOptions { Unique = true };
+            var indexModel = new CreateIndexModel<BsonDocument>(indexKeys, indexOptions);
+            _colecao.Indexes.CreateOne(indexModel);
         }
     }
 }
