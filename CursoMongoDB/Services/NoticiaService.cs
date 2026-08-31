@@ -301,5 +301,41 @@ namespace CursoMongoDB.Services
                 }
             }
         }
+
+        public async Task AtualizarEstatisticasVisualizacaoAsync(string url, int sinalGostou, double tempoLeituraAtual)
+        {
+            var filtro = Builders<BsonDocument>.Filter.Eq("Url", url);
+            var noticia = await _colecao.Find(filtro).FirstOrDefaultAsync();
+
+            if (noticia == null)
+            {
+                Console.WriteLine($"Notícia com URL '{url}' não encontrada.");
+                return;
+            }
+            
+            int visualizacoes = noticia.GetValue("Visualizacoes", 0).AsInt32;
+            int gostei = noticia.GetValue("Gostei", 0).AsInt32;
+            int naoGostei = noticia.GetValue("NaoGostei", 0).AsInt32;
+            double tempoMedio = noticia.GetValue("TempoMedioLeitura", 0.0).ToDouble();
+
+            int novaQtdVisualizacoes = visualizacoes + 1;
+            double novoTempoMedio = ((tempoMedio * visualizacoes) + tempoLeituraAtual) / novaQtdVisualizacoes;
+
+            var atualizacao = Builders<BsonDocument>.Update
+                .Inc("Visualizacoes", 1)
+                .Set("TempoMedioLeitura", novoTempoMedio);
+                
+            if (sinalGostou == 1)
+            {
+                atualizacao = atualizacao.Inc("Gostei", 1);
+            }
+            else if (sinalGostou == -1)
+            {
+                atualizacao = atualizacao.Inc("NaoGostei", 1);
+            }
+
+            await _colecao.UpdateOneAsync(filtro, atualizacao);
+            Console.WriteLine("Estatísticas atualizadas com sucesso.");
+        }
     }
 }
