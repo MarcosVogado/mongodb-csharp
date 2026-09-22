@@ -29,7 +29,7 @@ namespace CursoMongoDB.Services
             var schema = GetMongoJsonSchema();
 
             var colecoes = db.ListCollectionNames().ToList();
-            
+
             if (!colecoes.Contains(nomeColecao))
             {
                 // Cria a coleção com o schema, se ainda não existir
@@ -356,7 +356,45 @@ namespace CursoMongoDB.Services
                 totalGostei += doc.GetValue("Gostei", 0).AsInt32;
                 totalNaoGostei += doc.GetValue("NaoGostei", 0).AsInt32;
             }
-            
+
+            return (totalGostei, totalNaoGostei);
+        }
+
+        public async Task<(int totalGostei, int totalNaoGostei)> ObterReacoesPorFiltroAsync(
+            DateTime? dataInicio = null,
+            DateTime? dataFim = null,
+            string? nomeJornalista = null,
+            string? tag = null)
+        {
+            var filtros = new List<FilterDefinition<BsonDocument>>();
+
+            filtros.Add(Builders<BsonDocument>.Filter.Gte("DataPublicacao", dataInicio.Value));
+            filtros.Add(Builders<BsonDocument>.Filter.Lte("DataPublicacao", dataFim.Value));
+            filtros.Add(Builders<BsonDocument>.Filter.AnyEq("Tags", tag));
+
+            filtros.Add(
+                Builders<BsonDocument>.Filter.ElemMatch<BsonDocument>(
+                    "Jornalistas",
+                    Builders<BsonDocument>.Filter.Eq("Nome", nomeJornalista)
+                )
+            );
+
+            var filtroFinal = filtros.Count > 0
+            ? Builders<BsonDocument>.Filter.And(filtros)
+            : Builders<BsonDocument>.Filter.Empty;
+
+            var projecao = Builders<BsonDocument>.Projection.Include("Gostei").Include("NaoGostei");
+            var documentos = await _colecao.Find(filtroFinal).Project(projecao).ToListAsync();
+
+            var totalGostei = 0;
+            var totalNaoGostei = 0;
+
+            foreach (var doc in documentos)
+            {
+                totalGostei += doc.GetValue("Gostei", 0).AsInt32;
+                totalNaoGostei += doc.GetValue("NaoGostei", 0).AsInt32;
+            }
+
             return (totalGostei, totalNaoGostei);
         }
     }
